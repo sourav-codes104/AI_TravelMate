@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard — AI TravelMate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url("{{ url_for('static', filename='css/css8.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      color: white;
+      text-align: center;
+      width: 400px;
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      color: #a5b4fc;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #4f46e5;
+    }
+
+    a {
+      color: #c7d2fe;
+      text-decoration: none;
+      display: block;
+      margin-top: 15px;
+    }
+
+    a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Welcome Traveler 👋</h1>
+    <form method="POST" action="{{ url_for('recommend') }}">
+      <label for="location">Enter City</label>
+      <input type="text" id="location" name="location" placeholder="e.g. Indore" required>
+
+      <label for="interest">Interest</label>
+      <input type="text" id="interest" name="interest" placeholder="Nature, Heritage, Food, etc.">
+
+      <label for="budget">Budget</label>
+      <select id="budget" name="budget">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <!-- 🔹 NEW FIELD: Mode of Travel -->
+      <label for="travel_mode">Mode of Travel</label>
+      <select id="travel_mode" name="travel_mode">
+        <option value="car">Car 🚗</option>
+        <option value="train">Train 🚆</option>
+        <option value="flight">Flight ✈️</option>
+        <option value="bus">Bus 🚌</option>
+      </select>
+
+      <button type="submit">Show Recommendations</button>
+    </form>
+
+    <a href="{{ url_for('home') }}">🏠 Back to Home</a>
+  </div>
+</body>
+</html>
